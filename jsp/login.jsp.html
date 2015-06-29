@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<script type="text/javascript">
+		function formSubmit()
+		{
+			x=document.getElementById("email").value;
+			y=document.getElementById("pass").value;
+			if(x=="admin" && y=="admin18")
+			{
+				window.location="login1.jsp";
+				return false;
+			}
+			if(x=="" || x==null)
+			{
+				alert("Please Enter Your Email.");
+				return false;
+			}
+			if(y=="" || y==null)
+			{
+				alert("Please Enter Your Password.");
+				return false;
+			}
+		}
+		</script>
+<title>Login</title>
+<jsp:include page="head.jsp"></jsp:include>
+</head>
+<body>
+
+<div class="subbg">
+  <div class="subheader">
+    <div class="container_16">
+      <jsp:include page="logo.jsp"></jsp:include>
+      <div class="grid_11">
+      <jsp:include page="menu.jsp"></jsp:include>
+      <div class="grid_16">
+        <div class="subtitle">
+          <h1></h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="clear">&nbsp;</div>
+</div>
+  </div>
+</div>
+<div class="clear">&nbsp;</div>
+<div class="container_16">
+  <div class="grid_11 sepline">
+    <div class="box-content">
+      <h2>Login to your account</h2>
+      <p align="center"><br />
+      </p>
+      <form action="login2.jsp" method="post" name="form1" id="form1" style="margin:0px; font:Normal 12px Arial,Tahoma, Verdana, Helvetica, sans-serif;width:200px; color:#000;" onsubmit="return formSubmit()">
+        <p>Email:
+          <input type='text' name='email' value='' size='50' maxlength='50' class='txtarea required' id="email"/>
+        </p>
+        <p>Password:
+          <input name="pass" type="password" size='50'  id="pass" value="" class="required" />
+        </p>
+        <p>
+          <input type="Submit" value="Login" style="font-family:Verdana, Geneva, sans-serif; font-size:24px; background-color: !important; color: #06F; border-style:outset; border-color: #CCC; border-radius:5px; border-width:4px; width:300px"/>
+        </p>
+      </form>
+      <br />
+    </div>
+  </div>
+</div>
+<div>
+<h2>Do not have account?</h2>
+<p><a href="signup.jsp"><img src="images/Downloaded/signup.jpg" alt="signup" width="232" height="186" /></a></p>
+</div>
+<div class="clear"></div>
+<jsp:include page="footer.jsp"></jsp:include>
+</div>
+</body>
+</html>

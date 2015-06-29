@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style>
+p.desc{font-family:Verdana, Geneva, sans-serif; font-size:20px; font-style:normal; line-height:35px; padding-left:150px; padding-top:20px; padding-bottom:100px}
+</style>
+
+
+<script type="text/javascript">
+	function logout()
+	{
+		alert("You are Successfully Logged Out");
+		window.location="login.jsp";
+	}
+</script>
+<title>Welcome</title>
+<jsp:include page="head.jsp"></jsp:include>
+</head>
+<body>
+<div class="subbg">
+  <div class="subheader">
+    <div class="container_16">
+      <jsp:include page="logo.jsp"></jsp:include>
+      <div class="grid_11">
+      <jsp:include page="menu.jsp"></jsp:include>
+    </div>
+  </div>
+</div>
+<p>&nbsp;</p>
+<div style="width:900px" align="right">
+<%@ page import ="java.sql.*" %>
+<%
+    
+	
+	String userid = request.getParameter("email");    
+    String pwd = request.getParameter("pass");
+	session.setMaxInactiveInterval(6000);
+	session.setAttribute("username",userid);
+	
+    Class.forName("com.mysql.jdbc.Driver");
+    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/soc",
+            "root", "");
+    Statement st = con.createStatement();
+    ResultSet rs;
+    rs = st.executeQuery("select * from pro where email='"+userid+"' and password='"+pwd+"'");
+    if (rs.next()) {
+		
+			String what = rs.getString(1);
+			String address = rs.getString(3);
+			String city = rs.getString(4);
+			String state = rs.getString(5);
+			String zip = rs.getString(6);
+			String travel = rs.getString(7);
+			String fname = rs.getString(8);
+			String lname = rs.getString(9);
+			String email = rs.getString(10);
+			String phone = rs.getString(11);
+			String distance = rs.getString(12);
+			out.println("<input type='Submit' value='Logout' style='font-family:Verdana, Geneva, sans-serif; font-size:24px; background-color: !important; color: #06F; border-style:outset; border-color: #CCC; border-radius:5px; border-width:4px; width:120px' align='right' onclick='logout()'/></div>");
+			out.println("<p class='desc'> Hi "+fname+" "+lname+".<br/>Welcome to Service on click.<br/><br/>");
+			out.println("We have your following information in our database<br/><br/>");
+			out.println("Your address is:<br/>"+address+"<br/>"+city+"<br/>"+state+"<br/>"+zip+"<br/><br/>");
+			out.println("You are a "+what+" by profession.<br/>");
+			out.println("Your travelling information states that "+travel+".<br/>");
+			out.println("You are willing to travel "+distance+"kms.<br/>");
+			out.println("<br/><br/>To make changes to your profile please mail us on serviceonclick1@gmail.com</p>");
+			
+			
+			String uname=(String)session.getAttribute("username");
+	if(uname==null)
+	{
+			response.sendRedirect("login.jsp");
+			session.removeAttribute("username");
+	}		
+		
+    } 
+	else {
+        
+		out.println("<p class='desc'>Invalid Username or Password <a href='login.jsp'>Please Try Again</a></p>");
+    	out.println("<div style='height:150px'>");
+	}
+	
+%>
+
+</div>
+</div>
+<jsp:include page="footer.jsp"></jsp:include>
+</body>
+</html>
+

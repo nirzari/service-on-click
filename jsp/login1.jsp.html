@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style>
+.desc{font-family:Verdana, Geneva, sans-serif; font-size:20px; font-style:normal; padding-left:100px; line-height:30px}
+</style>
+<script type="text/javascript">
+	function logout()
+	{
+		alert("You are Successfully Logged Out");
+		window.location="login.jsp";
+	}
+</script>
+
+<title></title>
+<jsp:include page="head.jsp"></jsp:include>
+</head>
+<body>
+<div class="subbg">
+  <div class="subheader">
+    <div class="container_16">
+      <jsp:include page="logo.jsp"></jsp:include>
+      <div class="grid_11">
+      <jsp:include page="menu.jsp"></jsp:include>
+    	<div class="grid_16">
+        <div class="subtitle">
+          <h1 style="font:Verdana, Geneva, sans-serif; font-size:28px;">Welcome Admin</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="width:900px" align="right">
+<input type="button" value="Logout" style="font-family:Verdana, Geneva, sans-serif; font-size:24px; background-color: !important; color: #06F; border-style:outset; border-color: #CCC; border-radius:5px; border-width:4px; width:120px" onclick="logout()"/>
+</div>
+
+<p class="desc"> 
+Maintain Databases For<br/>
+<ul type="circle" style="font:Verdana, Geneva, sans-serif; font-size:20px; font-style:normal; padding-bottom:20px; padding-top:10px; padding-left:120px;">
+</ul>
+<li class="desc"><a href="http://localhost/phpmyadmin/sql.php?db=soc&token=3c16270e862c495f1fb373c1daca2e87&goto=db_structure.php&table=photorequest&pos=0" target="_blank">Photographer</a></li>
+
+<li class="desc"><a href="http://localhost/phpmyadmin/sql.php?db=soc&token=3c16270e862c495f1fb373c1daca2e87&goto=db_structure.php&table=djrequest&pos=0" target="_blank">DJ</a></li>
+<li class="desc"><a href="http://localhost/phpmyadmin/sql.php?db=soc&token=3c16270e862c495f1fb373c1daca2e87&goto=db_structure.php&table=tutorrequest&pos=0" target="_blank">Tutor</a></li>
+<li class="desc"><a href="http://localhost/phpmyadmin/sql.php?db=soc&token=3c16270e862c495f1fb373c1daca2e87&goto=db_structure.php&table=cleanerrequest&pos=0" target="_blank">Cleaner</a></li>
+<li class="desc"><a href="http://localhost/phpmyadmin/sql.php?db=soc&token=3c16270e862c495f1fb373c1daca2e87&goto=db_structure.php&table=webdeveloperrequest&pos=0" target="_blank">Web Designer</a></li>
+</ul>
+</p>
+<br/><br/><br/>
+<p class="desc"> New Services Requested are:
+<ul type="circle">
+</ul>
+<%@ page import ="java.sql.*" %>
+<%
+    
+	Class.forName("com.mysql.jdbc.Driver");
+    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/soc",
+            "root", "");
+    Statement st = con.createStatement();
+    ResultSet rs;
+    rs = st.executeQuery("select * from pro where what!='photographer' and what!='dj' and what!='cleaner' and what!='tutor' and what!='webdeveloper'");
+    if (rs.next()) {
+		rs.beforeFirst();
+		while(rs.next())
+		{
+			String what = rs.getString(2);
+			String email= rs.getString(10);
+			if(what!=null)
+			out.println("<li class='desc'>"+what+" by "+email+"</li>");
+		}
+	}
+%>
+</ul>
+<br/><br/>
+<jsp:include page="footer.jsp"></jsp:include>
+</body>
+</html>
+

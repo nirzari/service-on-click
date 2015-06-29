@@ -1,0 +1,288 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style>
+p.desc{font-family:Verdana, Geneva, sans-serif; font-size:14px; font-style:normal;}
+#select1para,select2para{font-family:Verdana, Geneva, sans-serif; font-size:12px; color:#F00;"}
+</style>
+<script type="text/javascript">
+function validateForm()
+	{
+		
+		var ele=document.getElementById('select1').selectedIndex;
+		if(ele==0)
+		{
+			alert("Please Select Event Type");
+			return false;			
+		}
+		if(ele==5)
+			{
+				x=document.getElementById('text11').value;
+				if(x=="" || x==null)
+				{
+					alert("Enter Event Type");
+					return false;
+				}
+				else
+				{
+					document.getElementById('select1').value=x;
+				}
+				
+			}  
+		
+		var ele=document.getElementById('select2').selectedIndex;
+		if(ele==0)
+		{
+			alert("Please Select Number of Guests");
+			return false;
+		}
+		var ele=document.getElementById('select3').selectedIndex;
+		if(ele==0)
+		{
+			alert("Please Select The Place");
+			return false;
+		}
+		var ele=document.getElementById('select4').selectedIndex;
+		if(ele==0)
+		{
+			alert("Please Select Your Budget");
+			return false;
+		}
+		
+		var emailfield=document.getElementById('email').value;
+		var today =new Date();
+      	var inputDate = new Date(document.getElementById('date').value);
+		  if (inputDate < today) {
+		  alert("Enter a valid date...");
+		  return false;
+	  }
+	
+		var atpos=emailfield.indexOf("@");
+		var dotpos=emailfield.lastIndexOf(".");
+		if (atpos<1 || dotpos<atpos+2 || dotpos+2>=emailfield.length)
+  {
+  		alert("Not a valid e-mail address");
+  		return false;
+  }
+  
+  var a="service1";
+			var b="othertext1";
+			if(document.getElementById(a).checked==true)
+			{		
+				ele=document.getElementById(b);
+				x=ele.value;
+				if(x==null || x=="")
+				{
+					alert("Please Enter Format");
+					return false;
+				}
+				else
+				{
+					document.getElementById(a).value=x;
+				}
+			}
+	
+  
+  quotes=document.getElementById('quotes').checked;
+  if(quotes==true)
+  {
+	  ph=document.getElementById('phone').value;
+	  if(ph=="" || ph==null)
+	  {
+		  alert("Please Enter Your Phone Number...");
+		  return false;
+	  }
+	}
+	var phoneno = /^\d{10}$/;  
+  if(!ph.match(phoneno))
+  		{  
+        alert("Enter Valid Phone Number");  
+        return false;  
+        }
+		
+			
+	}
+	</script>
+<title>Photographer</title>
+<jsp:include page="head.jsp"></jsp:include>
+</head>
+<body>
+<div class="subbg">
+  <div class="subheader">
+    <div class="container_16">
+      <jsp:include page="logo.jsp"></jsp:include>
+      <div class="grid_11">
+      <jsp:include page="menu.jsp"></jsp:include>
+      <div class="grid_16">
+        <div class="subtitle">
+          <h1>Request Photographer</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="clear">&nbsp;</div>
+<div class="container_16">
+  <div class="grid_11 sepline">
+    <div class="box-content">
+      <h1  style="font:Verdana, Geneva, sans-serif; font-size:28px;">Tell us more about your needs</h1>
+      <br />
+      <form action="photographersubmit.jsp" method="post" name="form" id="form" style="margin:0px; color:#000; width:600px;  font-family:Verdana, Geneva, sans-serif; font-size:18px; font-style:normal;" onsubmit="return validateForm()">
+      <h3 style="font:Verdana, Geneva, sans-serif; font-size:24px;">For what  kind of  event you need photographer?</h3>
+      <h3>
+        <select name="event" class="desc" id='select1' style="font:Verdana, Geneva, sans-serif; font-size:14px;" onchange="other()"> 
+          
+          <option value="dropdown" selected="selected" disabled="disabled">Please select one&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+          <option value="Wedding">Wedding</option>
+          <option value="Birthday">Birthday</option>
+          <option value="Family Reunion">Family Reunion</option>
+          <option value="Corporate">Corporate</option>
+          <option value="">Other</option>
+       
+        </select></h3>
+        <script>
+		function other()
+		{
+			ele=document.getElementById('select1').selectedIndex;
+			if(ele==5)
+			{
+				document.getElementById('text1').style.visibility='visible';
+			}
+			else
+			{
+				document.getElementById('text1').style.visibility='hidden';
+			}
+		}
+		</script>
+        <div style="visibility:hidden;" id="text1"><input type="text" maxlength="50" name='event' size="50" placeholder="If Other,pls specify" id="text11"/></div>
+			
+      <h3 style="font:Verdana, Geneva, sans-serif; font-size:24px;">How many guests will be attending?
+      </h3>
+       
+        <p class="desc">
+            <select name="people" style="font:Verdana, Geneva, sans-serif; font-size:14px;" id='select2'>
+              <option value="dropdown" disabled="disabled" selected="selected">Please select one&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+              <option value="Less than 25">Less than 25</option>
+              <option value="25-50">25-50</option>
+              <option value="50-100">50-100</option>
+              <option value="More than 100">More than 100</option>
+            </select>
+        </p>
+       <br/>
+      <h3 style="font:Verdana, Geneva, sans-serif; font-size:24px;">Where do you want your photos taken?        </h3>
+       
+          <select name="venue" class="desc" style="font:Verdana, Geneva, sans-serif; font-size:14px;" id='select3'>
+			<option value="dropdown" disabled="disabled" selected="selected">Please select one&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+			<option value="Indoor">Indoor</option>
+			<option value="Outdoor">Outdoor</option>
+			<option value="I am not sure yet">I am not sure yet</option>
+		  </select>
+	  <br/><br/>
+       <h3 style="font:Verdana, Geneva, sans-serif; font-size:24px;">In what formats do you want your images?
+      </h3>
+      <p>
+          <input type='checkbox' value='CD/DVD' name='format'>CD/DVD
+        </p>
+       <p>
+          <input type='checkbox' value='Online or Digital Prints' name='format'>
+          Online or Digital Prints
+        </p>
+		<p>
+          <input type='checkbox' value='Album' name='format'>Album
+        </p>
+		<p>
+          <input type='checkbox' value="I am not sure" name="format">I'm not sure
+          
+		 <p class="desc">
+          <input type='checkbox' value='' name='format' id='service1' onclick="selectOther()">
+          <span class="desc">
+          <input type="text"  value="" placeholder="If Other, Enter Here." id="othertext1" onkeypress='textfocus()' />
+          </span></p>
+          <script>
+		  function textfocus()
+		  {
+			  document.getElementById("service1").checked=true;
+		  }
+	  	function selectOther()
+		{
+			var a="service1";
+			var b="othertext1";
+			if(document.getElementById(a).checked==true)
+	{		ele=document.getElementById(b);
+			ele.focus();
+	}}
+	
+	
+		</script>
+        </p>
+	<br/>  
+		<h3  style="font:Verdana, Geneva, sans-serif; font-size:24px;">What's your estimated budget for the photographer's services and images? </h3>
+        <h3>
+          <select name="budget" class="desc" style="font:Verdana, Geneva, sans-serif; font-size:14px;" id='select4'>
+            <option value="dropdown" disabled="disabled"  selected="selected">Please select one&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+            <option value="Over 3000 Rs">Over 3000 Rs</option>
+            <option value="2000-3000">2000-3000</option>
+            <option value="1000-2000">1000-2000</option>
+            <option value="500-1000">500-1000</option>
+            <option value="I'am not sure yet">I'am not sure yet</option>
+          </select>
+      
+      </h3>
+      <br/>
+        <h3  style="font:Verdana, Geneva, sans-serif; font-size:24px;">Anything else the photographer should know:</h3>
+        <h3>
+          <textarea value='' rows='5' cols='50' name='whatelse' class='desc'></textarea>
+          </p>
+        </h3><br/>
+        
+        <h3  style="font:Verdana, Geneva, sans-serif; font-size:24px;">When do you want the event photographer?        </h3>
+       <input type="date" class="desc" name="date" size="50" value="" required="required" id="date"/>
+	  <br/><br/>
+      
+       <h3  style="font:Verdana, Geneva, sans-serif; font-size:24px;">City where the work is needed        </h3>
+       <input type="text" class="desc"  value="" maxlength="20" size="50" name='city' id='city' required="required"/>
+      <br/><br/>
+      
+       <h3  style="font:Verdana, Geneva, sans-serif; font-size:24px;">Enter Your Email</h3>
+        <input name="email" type="text" class="desc" placeholder="Enter your email" size="50" maxlength="30" id="email" />
+<br/><br/>        <h3 style="font:Verdana, Geneva, sans-serif; font-size:18px;"><input type="radio" name="quotes" value="text or mail"  onclick="toggle('show')" required="required" id='quotes'/>I want quotes by email and text message</h3> 
+        <script>
+		function toggle(value)
+		{
+			if(value=='show')
+			{
+				document.getElementById('option1').style.visibility='visible';
+			}
+			else
+			{
+				document.getElementById('option1').style.visibility='hidden';
+			}
+		}
+		</script>
+        
+        <h3 style="font:Verdana, Geneva, sans-serif; font-size:18px;"><input type="radio" name="quotes" value="mail" onchange="toggle('hide')" required="required"/>I want quotes by email</h3>
+	  
+		<br/>
+         <p class="desc" id="option1" style="font:Verdana, Geneva, sans serif; font-size:24px; visibility:hidden">
+         <label>Enter Your Phone Number</label>
+         <br/><br/><input type="text" name="phone" placeholder="Enter 10 digit phone number" size="50" maxlength="10" id='phone'/></p><br/>         
+		    <center><input type="Submit" value="Submit" style="font-family:Verdana, Geneva, sans-serif; font-size:24px; background-color: !important; color: #06F; border-style:outset; border-color: #CCC; border-radius:5px; border-width:4px; width:300px"/>	</center>    </p>
+		<br/><br/>
+	  </form>
+       <h3 style="font:Verdana, Geneva, sans-serif; font-size:18px;">What's Going to Happen? </h3>
+		<p>We'll match you with the best of our photographers in Your Area. We will send you quotes of available and interested event photographers within 24 hours.</p>
+    </div>
+  </div>
+  <div>
+    <h3>ServiceOnClick is a helpful way to approach the best professionals available in your area. We offer an easy to use and customized medium to help you with various kind of services.</h3>
+  </div>
+  <div>
+    <p>&nbsp;</p>
+  </div>
+  
+</div>
+<div class="clear"></div>
+<jsp:include page="footer.jsp"></jsp:include>
+</div>
+</body>
+</html>

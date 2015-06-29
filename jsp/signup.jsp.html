@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style>
+p.desc{font-family:Verdana, Geneva, sans-serif; font-size:14px; font-style:normal; padding-bottom:3px; padding-top:5px;}
+</style>
+<script type="text/javascript">
+
+	function validateForm()
+	{	
+		var emailfield=document.getElementById('email').value;
+		var atpos=emailfield.indexOf("@");
+		var dotpos=emailfield.lastIndexOf(".");
+		if (atpos<1 || dotpos<atpos+2 || dotpos+2>=emailfield.length)
+  {
+  		alert("Not a valid e-mail address");
+  		return false;
+  }
+		var ele=document.getElementById('select1').selectedIndex;
+		if(ele==0)
+		{
+			alert("Please Select What Do You Do");
+			return false;			
+		}
+		if(ele==6)
+		{
+			var x=document.getElementById("text11").value;
+			if(x==null || x=="")
+			{
+				alert("Please Enter What Do You Do");
+				return false;
+			}
+			else
+			{
+				document.getElementById('hide').value="true";
+				
+			}
+		}
+		var ele=document.getElementById('select2').selectedIndex;
+		if(ele==0)
+		{
+			alert("Please Select how far are you willing to travel");
+			return false;			
+		}
+		
+		var ph=document.getElementById('phone').value;
+	  if(ph=="" || ph==null)
+	  {
+		  alert("Please Enter Your Phone Number...");
+		  return false;
+	  }
+	var phoneno = /^\d{10}$/;  
+  if(!ph.match(phoneno))
+  		{  
+        alert("Enter Valid Phone Number");  
+        return false;  
+        }
+		var zip=document.getElementById('zip').value;
+	  if(zip=="" || zip==null)
+	  {
+		  alert("Please Enter Your Zip Code");
+		  return false;
+	  }
+	var phoneno = /^\d{6}$/;  
+  if(!zip.match(phoneno))
+  		{  
+        alert("Enter Valid Zip Code");  
+        return false;  
+        }
+		
+		
+	}
+</script>
+<title>SignUp</title>
+<jsp:include page="head.jsp"></jsp:include>
+</head>
+<body>
+<div class="subbg">
+  <div class="subheader">
+    <div class="container_16">
+      <jsp:include page="logo.jsp"></jsp:include>
+      <div class="grid_11">
+      <jsp:include page="menu.jsp"></jsp:include>
+      <div class="grid_16">
+        <div class="subtitle">
+          <h1 style="font:Verdana, Geneva, sans-serif; font-size:28px;">Feel Free To Sign Up With Us!</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="clear">&nbsp;</div>
+<div class="container_16">
+  <div class="grid_11 sepline">
+    <div class="box-content">
+    <form action="signup2.jsp" method="get" name="form2" id="form2" style="margin:0px; color:#000; width:600px; color:#000; font-family:Verdana, Geneva, sans-serif; font-size:18px; font-style:normal;" onsubmit="return validateForm()">
+     <h3 style="font:Verdana, Geneva, sans-serif; font-size:20px;">What do you do?</h3>
+      <p class="desc">
+        <select name="what" style="font:Verdana, Geneva, sans-serif; font-size:14px;" onchange="other()" id="select1">
+          <option value="dropdown" disabled="disabled" selected="selected">Please select one&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+          <option value="photographer">Photographer</option>
+          <option value="cleaner">Cleaner</option>
+          <option value="dj">DJ</option>
+          <option value="tutor">Tutor</option>
+          <option value="webdeveloper">Web Developer</option>
+          <option value="Others">Others</option>
+        </select>
+         <script>
+		function other()
+		{
+			ele=document.getElementById('select1').selectedIndex;
+			if(ele==6)
+			{
+				document.getElementById('text1').style.visibility='visible';
+			}
+			else
+			{
+				document.getElementById('text1').style.visibility='hidden';
+			}
+			return true;
+		}
+		</script>
+        <div style="visibility:hidden;" id="text1"><input type="text" maxlength="50" name='event' size="50" placeholder="If Other,pls specify" id="text11" value=""/></div>
+      <p> <h3 style="font:Verdana, Geneva, sans-serif; font-size:20px;">Where are you located?</h3></p>
+		<h3 style="font:Verdana, Geneva, sans-serif; font-size:18px;">Help us send you clients near you.
+	  </h3>
+		<br/>
+		  <p class="desc">Street address *:<br/>
+          <input type='text' value='' size='50' maxlength='100' name='address' class='txtarea required' required="required"/>
+          </p>
+		<p class="desc">City *:<br/>
+          <input type='text' value='' size='50' maxlength='50' name='city' class='txtarea required' required="required"/></p>
+		<p class="desc">State *:<br/>
+          <input type='text' value='' size='50' maxlength='50' name='state' class='txtarea required' required="required"/></p>
+		<p class="desc">ZIP Code *:<br/>
+          <input type='text' value='' size='6' maxlength='6' name='zip' class='txtarea required' id="zip"/></p>
+      <br/>
+	  
+	  <h3 style="font:Verdana, Geneva, sans-serif; font-size:20px;">Where do you meet your clients?</h3>
+		<h3 style="font:Verdana, Geneva, sans-serif; font-size:18px;" >Help us send you the right client by telling us about your business.
+	  </h3>
+        <p class="desc">
+          <input type='checkbox' value='I will Travel to my clients' name='travel'>I travel to my clients
+        </p>
+       <p class="desc">
+          <input type='checkbox' value='Client has to travel to me' name='travel' />My clients travel to me
+        </p>
+		<p class="desc">
+          <input type='checkbox' value='Neither me nor client needs to travel.' name='travel'>Neither (phone or internet only)
+        </p><br/>
+	
+	  <h3 style="font:Verdana, Geneva, sans-serif; font-size:20px;">How can we contact you?</h3>
+		
+		
+	 
+        <p class="desc">First Name *:<br/>
+          <input type='text' value='' size='50' maxlength='50' name='fname' class='txtarea required' required="required"/>
+        </p>
+        <p class="desc">Last name *:<br/>
+          <input name="lname" type="text" size='50'  id="from" value="" class="required" required="required"/>
+        </p>
+        <p class="desc">Email address :<br/>
+          <input type='text' value='' size='50' maxlength='50' name='email' id="email"/>
+        </p>
+        <p class="desc">Phone number :<br/>
+          <input name="phone" type="text" id="phone" size='50'  value="" maxlength="10"/>
+        </p><br/>
+	  <h3 style="font:Verdana, Geneva, sans-serif; font-size:20px;">How far are you willing to travel?</h3>
+	 
+        <select name="distance" style="font:Verdana, Geneva, sans-serif; font-size:14px;" id="select2">
+			<option value="dropdown" disabled="disabled" selected="selected">Please select one&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+			<option value="less than 5">less than 5 km</option>
+			<option value="5">5 km</option>
+			<option value="10">10 km</option>
+			<option value="15">15 km</option>
+			<option value="more than 15">more than 15 km</option>
+		</select>
+        <br/><br/>
+		<input type="Submit" value="Next" style="font-family:Verdana, Geneva, sans-serif; font-size:24px; background-color: !important; color: #06F; border-style:outset; border-color: #CCC; border-radius:5px; border-width:4px; width:300px"/>
+        <input type="hidden" value="false" id="hide" name="hide"/>
+	  </form>
+      <br />
+    </div>
+  </div>
+   <h3  style="font:Verdana, Geneva, sans-serif; font-size:20px;">ServiceOnClick is a helpful way where clients can approach professionals like you. We offer an easy to use and customized medium to connect you to our clients. Register yourself here with correct information.</h3>
+</div>
+<div class="clear"></div>
+<jsp:include page="footer.jsp"></jsp:include>
+</div>
+</body>
+</html>

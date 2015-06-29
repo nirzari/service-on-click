@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style>
+p.desc{font-family:Verdana, Geneva, sans-serif; font-size:24px; font-style:normal; padding:10px; margin:10px; line-height:35px;}
+
+</style>
+<title>Signup3</title>
+<jsp:include page="head.jsp"></jsp:include>
+</head>
+<body>
+<div class="subbg">
+  <div class="subheader">
+    <div class="container_16">
+      <jsp:include page="logo.jsp"></jsp:include>
+      <div class="grid_11">
+      <jsp:include page="menu.jsp"></jsp:include>
+      <div class="grid_16">
+        <div class="subtitle">
+          <h1></h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="clear">&nbsp;</div>
+<div class="clear">&nbsp;</div>
+
+  <%@ page import ="java.sql.*" %>
+<%
+    String a=(String)session.getAttribute("what");
+	String ab=(String)session.getAttribute("other");
+	String b=(String)session.getAttribute("address");
+	String c=(String)session.getAttribute("city");
+	String d=(String)session.getAttribute("state");
+	String e=(String)session.getAttribute("zip");
+	String f=(String)session.getAttribute("travel");
+	String g=(String)session.getAttribute("fname");
+	String h=(String)session.getAttribute("lname");
+	String i=(String)session.getAttribute("email");
+	String j=(String)session.getAttribute("phone");
+	String k=(String)session.getAttribute("distance");
+	String l=(String)request.getParameter("password");	
+		
+	if(l==null)
+			response.sendRedirect("signup.jsp");
+	
+	else
+	{		
+	Class.forName("com.mysql.jdbc.Driver");
+    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/soc",
+            "root", "");
+    Statement st = con.createStatement();
+    int count=st.executeUpdate("insert into pro values('"+a+"','"+ab+"','"+b+"','"+c+"','"+d+"','"+e+"','"+f+"','"+g+"','"+h+"','"+i+"','"+j+"','"+k+"','"+l+"')");
+    
+	if(count!=0){
+		
+		out.println("<p class='desc' width=400px align='center'> SUCCESSFULLY REGISTERED.<br/> Please Log in to see your profile.<br/>"); 
+		out.println("<a href='login.jsp'> Login </a></p>");
+	}
+	
+	session.removeAttribute("what");
+	session.removeAttribute("address");
+	session.removeAttribute("city");
+	session.removeAttribute("state");
+	session.removeAttribute("zip");
+	session.removeAttribute("travel");
+	session.removeAttribute("fname");
+	session.removeAttribute("lname");
+	session.removeAttribute("email");
+	session.removeAttribute("phone");
+	session.removeAttribute("distance");
+	session.removeAttribute("password");
+	
+	}
+	
+%>
+      
+      <div align="center" style="height:200px">
+      <p>&nbsp;</p>
+      </div>
+</div>
+</div>
+</div>
+
+<jsp:include page="footer.jsp"></jsp:include>
+</div></div>
+</body>
+</html>

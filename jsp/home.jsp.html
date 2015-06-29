@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Home</title>
+<link href="Spry-UI-1.7/css/SpryImageSlideShow.css" rel="stylesheet" type="text/css" />
+<jsp:include page="head.jsp"></jsp:include>
+<script src="Spry-UI-1.7/includes/SpryDOMUtils.js" type="text/javascript"></script>
+<script src="Spry-UI-1.7/includes/SpryDOMEffects.js" type="text/javascript"></script>
+<script src="Spry-UI-1.7/includes/SpryWidget.js" type="text/javascript"></script>
+<script src="Spry-UI-1.7/includes/SpryPanelSet.js" type="text/javascript"></script>
+<script src="Spry-UI-1.7/includes/SpryFadingPanels.js" type="text/javascript"></script>
+<script src="Spry-UI-1.7/includes/SpryImageLoader.js" type="text/javascript"></script>
+<script src="Spry-UI-1.7/includes/SpryImageSlideShow.js" type="text/javascript"></script>
+<script src="Spry-UI-1.7/includes/plugins/ImageSlideShow/SpryPanAndZoomPlugin.js" type="text/javascript"></script>
+<style type="text/css">
+/* BeginOAWidget_Instance_2141542: #ImageSlideShow */
+
+#ImageSlideShow.ImageSlideShow {
+	width: 900px;
+	height: 400px;
+	border: solid 10px #3399ff;
+}
+
+#ImageSlideShow .ISSClip {
+	background-color: #000000;
+}
+    
+/* EndOAWidget_Instance_2141542 */
+</style>
+<script type="text/xml">
+<!--
+<oa:widgets>
+  <oa:widget wid="2141542" binding="#ImageSlideShow" />
+</oa:widgets>
+-->
+</script>
+
+<script type="text/javascript">
+	function validateform()
+	{
+		var a=document.getElementById('service').value;
+		var b=document.getElementById('city').value;
+		var c=document.getElementById('zip').value;
+		var d=a.toUpperCase();
+		
+		
+		var zip = /^\d{6}$/;  
+  if(!c.match(zip))
+  		{  
+        	alert("Enter Valid Zip Code");
+        	return false;
+        }
+		if(d=="CLEANER")
+		{
+			window.location="cleaner.jsp";
+			return false;
+		}
+		else if(d=="DJ")
+		{
+			window.location="dj.jsp";
+			return false;
+		}
+		else if(d=="PHOTOGRAPHER")
+		{
+			window.location="photographer.jsp";
+			return false;
+		}
+		else if(d=="TUTOR")
+		{
+			window.location="tutor.jsp";
+			return false;
+		}
+		else if(d=="WEB DESIGNER" || d=="WEBDESIGNER")
+		{
+			window.location="web developer.jsp";
+			return false;
+		}
+		else
+		{
+			alert("Please Enter A valid Service");
+			return false;
+		}
+	}
+</script>
+</head>
+<body>
+<div class="subbg">
+  <div class="subheader">
+    <div class="container_16">
+      <jsp:include page="logo.jsp"></jsp:include>
+      <div class="grid_11">
+      <jsp:include page="menu.jsp"></jsp:include>
+      
+    </div>
+  </div>
+</div>
+</div>
+<div align="center">
+<table align="center" width="1350px" >
+  <tr>
+<td width="*" align="center" style="vertical-align:middle">
+  <ul id="ImageSlideShow">
+    <li><a href="photos/1.jpg"><img src="photos/1.jpg" alt="D J" /></a></li>
+  <li><a href="photos/2.jpg"><img src="photos/2.jpg" alt="" /></a></li>
+  <li><a href="photos/3.jpg"><img src="photos/3.jpg" alt="" /></a></li>
+  <li><a href="photos/4.png"><img src="photos/4.png" alt="" /></a></li>
+  <li><a href="photos/5.png"><img src="photos/5.png" alt="" /></a></li>
+
+
+  </ul>
+  <script type="text/javascript">
+// BeginOAWidget_Instance_2141542: #ImageSlideShow
+
+var ImageSlideShow = new Spry.Widget.ImageSlideShow("#ImageSlideShow", {
+	widgetID: "ImageSlideShow",
+	injectionType: "replace",
+	autoPlay: true,
+	displayInterval: 4000,
+	transitionDuration: 1000,
+	componentOrder: ["view", "controls"],
+	plugIns: [ Spry.Widget.ImageSlideShow.PanAndZoomPlugin ]
+});
+// EndOAWidget_Instance_2141542
+  </script>
+</td>
+<td width="420px" align="right">
+<form  action="home.jsp" onsubmit="return validateform()">
+<table width="410px"  height="420px"border="0" cellpadding="10px" align="right" style=" font:Verdana, Geneva, sans-serif; font-size:24px; background-attachment: local; background-image:url(images/bg.jpg); border:solid; border-color:#3399FF; border-bottom-width:10px; border-right-width:10px; border-left-width:10px; border-top-width:10px;z-index:5px;">
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;&nbsp;Request Service:</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;&nbsp;What service do you need?</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;&nbsp;<input name="service" type="text"  placeholder="Cleaner, Tutor, DJ, Photographer,Web Developer..." size=50" id="service" required="required"/></td>
+  </tr>
+  
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;&nbsp;Where do you need the service?</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;&nbsp;<input name="City" type="text" size="50" placeholder="Enter City" id="city" required="required"/></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;&nbsp;<input name="Zipcode	" type="text" size="50"  maxlength="6" placeholder="Enter Zipcode" id="zip" required="required"/></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="center"><input type="Submit" value="Submit Request" style="font-family:Verdana, Geneva, sans-serif; font-size:24px; background-color: white; color: #06F; border-style:outset; border-color: #3399FF; border-radius:5px; border-width:4px; width:300px"/></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</form>
+</td>
+</tr>
+</table>
+</div>
+
+<div align="center">
+    <p><br/><br/>
+    <h1> Why Should I Use This Service? </h1>
+    <br/><br/>
+    <ul style="font-size: 20px; font-family: Verdana, Geneva, sans-serif;">
+    <li>Multiple Quotes : Get Several Quotes</li>
+    <li>&nbsp;</li>
+    <li>Compare Prices : Get a Great Deal</li>
+    <li>&nbsp;</li>
+    <li>Verified Reviews : Hire The Best Professional</li>
+    <li>&nbsp;</li>
+    <li>Free to Use : No Obligation To Hire</li>
+    <li>&nbsp;</li>
+    </ul>
+    </p>
+    
+</div>
+
+<jsp:include page="footer.jsp"></jsp:include>
+<%
+    String a = request.getParameter("service");
+	if(a=="CLEANER")
+		{
+			response.sendRedirect("cleaner.jsp");
+		}
+		else if(a=="DJ")
+		{
+			response.sendRedirect("dj.jsp");
+		}
+		else if(a=="PHOTOGRAPHER")
+		{
+			response.sendRedirect("photographer.jsp");
+		}
+		else if(a=="TUTOR")
+		{
+			response.sendRedirect("tutor.jsp");
+		}
+		else if(a=="WEB DESIGNER" || a=="WEBDESINGER")
+		{
+			response.sendRedirect("web developer.jsp");
+		}
+		
+%>
+</body>
+
+</html>
+

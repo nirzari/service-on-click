@@ -1,0 +1,13 @@
+@charset "utf-8";
+/* Checkerboard background so you can see alpha transparency */
+body {
+	background-image: url(images/bg_texture.gif);
+	background-repeat: repeat;
+}
+
+.gradientClass {
+	padding: 10px;
+	margin: 20px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 12px;
+}

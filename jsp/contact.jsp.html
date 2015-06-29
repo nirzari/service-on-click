@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style>
+p.desc{font-family:Verdana, Geneva, sans-serif; font-size:14px; font-style:normal;}
+</style>
+<title>ContactUs</title>
+<jsp:include page="head.jsp"></jsp:include>
+</head>
+<script>
+function validateForm(){
+var emailfield=document.getElementById('email').value;
+	var atpos=emailfield.indexOf("@");
+		var dotpos=emailfield.lastIndexOf(".");
+		if (atpos<1 || dotpos<atpos+2 || dotpos+2>=emailfield.length)
+  {
+  		alert("Not a valid e-mail address");
+  		return false;
+  }
+}
+</script>
+<body>
+<div class="subbg">
+  <div class="subheader">
+    <div class="container_16">
+      <jsp:include page="logo.jsp"></jsp:include>
+      <div class="grid_11">
+      <jsp:include page="menu.jsp"></jsp:include>
+      <div class="grid_16">
+        <div class="subtitle">
+          <h1 style="font-family:Verdana, Geneva, sans-serif; font-size:28px;">Feel Free To Contact Us!</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="clear">&nbsp;</div>
+<div class="container_16">
+  <div class="grid_11 sepline">
+    <div class="box-content">
+      <h2 style="font-family:Verdana, Geneva, sans-serif; font-size:24px; font-style:normal;">Contact Us!</h2>
+      <br />
+      <form action="contact1.jsp" method="post" name="form1" id="form1" style="margin:0px;  width:200px; color:#000; font-family:Verdana, Geneva, sans-serif; font-size:18px; font-style:normal;" onsubmit="return validateForm()">
+        <p class="desc">First Name *:
+          <input type='text' value='' size='50' maxlength='50' name='name' class='txtarea required' required="required"/>
+        </p>
+        <p class="desc">Your Email *:
+          <input name="email" type="text" size='50'  id="email" value="" class="required"/>
+        </p>
+        <p class="desc">Company Name * :
+          <input type='text' value='' size='50' maxlength='50' name='company' required="required"/>
+        </p>
+        <p class="desc">Subject *:
+          <input name="subject" type="text" id="subject" size='50'  value="" required="required"/>
+        </p>
+        <p class="desc">Message *:
+          <textarea name="message" cols="38" rows="5" id="message" required="required"></textarea>
+        </p>
+        <p style="width:300px;" align="center">
+          <input type="Submit" value="Submit" style="font-family:Verdana, Geneva, sans-serif; font-size:24px; background-color: !important; color: #06F; border-style:outset; border-color: #CCC; border-radius:5px; border-width:4px; width:300px"/>
+        </p>
+      </form>
+      <br />
+    </div>
+  </div>
+  <div class="grid_5">
+    <div class="box-content" style="font-family:Verdana, Geneva, sans-serif; font-size:12px; font-style:normal;"> 
+      <h4>Via Phone</h4>
+      <p>1. phone : 96 87 284155</p>
+      <p>2. phone : 89 80 514724</p>
+      <br />
+      <h4>Via Mail</h4>
+      <p><a href="#">serviceonclick1@gmail.com</a></p>
+      <br />
+    </div>
+  </div>
+</div>
+<div class="clear"></div>
+<jsp:include page="footer.jsp"></jsp:include>
+</div>
+</body>
+</html>

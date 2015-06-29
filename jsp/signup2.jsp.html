@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Signup2</title>
+<jsp:include page="head.jsp"></jsp:include>
+</head>
+<body>
+<script>
+function validateForm()
+{
+
+var y=document.forms["form1"]["password1"].value;
+var z=document.forms["form1"]["password"].value;
+var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+var count=0;
+  
+  
+   if(y==null)
+	{
+		alert("Password must be between 6 to 20 characters which contain at least one numeric digit, one uppercase and one 		   lowercase letter!!!")  
+  	return false;
+	}
+   else if(y!= null)
+	{
+		  
+  		if(y.match(passw) && y==z)   
+  		{	      
+  			return true; 
+  		}
+			else if(!y.match(passw))  
+  		{   
+  			alert("Password must be between 6 to 20 characters which contain at least one numeric digit, one uppercase and one 		lowercase   letter!!!")  
+  	return false;  
+  	}
+	else if(y!=z)
+		{
+			alert("Passwords do not match.");
+			return false;
+		}
+		
+}    
+}
+
+</script>	
+<div class="subbg">
+  <div class="subheader">
+    <div class="container_16">
+      <jsp:include page="logo.jsp"></jsp:include>
+      <div class="grid_11">
+      <jsp:include page="menu.jsp"></jsp:include>
+      <div class="grid_16">
+        <div class="subtitle">
+          <h1></h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="clear">&nbsp;</div>
+</div>
+  </div>
+</div>
+<div class="clear">&nbsp;</div>
+<div class="container_16">
+  <div class="grid_11 sepline">
+    <div class="box-content">
+      <h2>Final step to Sign Up</h2>
+      <p align="center"><br />
+      </p>
+      <form action="signup3.jsp" method="post" name="form1" id="form1" onsubmit="return validateForm()" style="margin:0px; font:Normal 12px Arial,Tahoma, Verdana, Helvetica, sans-serif;width:200px; color:#000;">
+        <p>Email:
+        <br/>
+        <%
+	
+	String email=request.getParameter("email");
+	out.print("<p class='desc'>"+email+"</p>");
+%>
+          
+        </p>
+        <p>Choose Your Password:
+          <input name="password1" type="password" size='50'  id="from" value="" class="required" />
+        </p>
+        <p>Re-enter Your Password:
+          <input name="password" type="password" size='50'  id="from" value="" class="required" />
+        </p>
+        <p>
+          <input type="Submit" value="Sign up" style="font-family:Verdana, Geneva, sans-serif; font-size:24px; background-color: !important; color: #06F; border-style:outset; border-color: #CCC; border-radius:5px; border-width:4px; width:300px"/>
+        </p>
+      </form>
+      <br />
+    </div>
+  </div>
+<div>
+<h3>ServiceOnClick is a helpful way where clients can approach professionals like you. We offer an easy to use and customized medium to connect you to our clients. Register yourself here with correct information.</h3>
+</div>
+</div>
+<div class="clear"></div>
+<jsp:include page="footer.jsp"></jsp:include>
+</div>
+<%
+	String a="";
+	a=request.getParameter("what");
+	session.setAttribute("what",a);
+	String ab=request.getParameter("event");
+	session.setAttribute("other",ab);	
+	a=request.getParameter("address");
+	session.setAttribute("address",a);
+	a=request.getParameter("city");
+	session.setAttribute("city",a);
+	a=request.getParameter("state");
+	session.setAttribute("state",a);
+	a=request.getParameter("zip");
+	session.setAttribute("zip",a);
+	a=request.getParameter("travel");
+	session.setAttribute("travel",a);
+	a=request.getParameter("fname");
+	session.setAttribute("fname",a);
+	a=request.getParameter("lname");
+	session.setAttribute("lname",a);
+	a=request.getParameter("email");
+	session.setAttribute("email",a);
+	a=request.getParameter("phone");
+	session.setAttribute("phone",a);
+	a=request.getParameter("distance");
+	session.setAttribute("distance",a);
+%>
+	
+	
+</body>
+</html>
